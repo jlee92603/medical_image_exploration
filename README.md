@@ -5,5 +5,7 @@ Types of data analysis includes opening and reading DICOM format files, forming 
 
 ---
 
-## LUNG/CHEST DICOM analysis
+## DICOM image analysis
 * [LUNG/CHEST EDA](https://github.com/jlee92603/DICOM_EDA/blob/main/chest_lung_images.ipynb)
+* [PELVIS EDA](https://github.com/jlee92603/DICOM_EDA/blob/main/pelvis_images.ipynb)
+* [ANKLE EDA](https://github.com/jlee92603/DICOM_EDA/blob/main/ankle_images.ipynb)
