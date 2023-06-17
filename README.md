@@ -10,14 +10,6 @@ Exploratory data analysis of medical images using Python functions.
 &nbsp;&nbsp;&nbsp; The images are taking using a computed tomography (CT) scan. X-ray beams are released and travels through the human body to the detector on the other side. Denser parts of the body such as the bones absorb more radiation than other parts such as soft tissues and air. The rays that are absorbed do not reach the detector as well, causing denser parts of the body to show up in lighter shades of gray in the image scans. The degree of the x-ray absorption is measured in Hounsfield Units (HU). The HU for general parts of the body are rouhgly -1000HU for air, -500HU for lungs, -200HU for fat, 0HU for water, 50HU for soft tissue, and >500HU for bone. 
 
 ---
-
-## Segmentation of Lung Images
-* [LUNG SEGMENTATIONS](https://github.com/jlee92603/DICOM_EDA/blob/main/Segmentation%20of%20lungs.ipynb)
-
-&nbsp;&nbsp;&nbsp; Lung and vessel segmentations done on NIFTI format medical images by creating contours. Notable methods include finding contour of lungs and vessels, determining area of lungs and vessels, creating a mask from the contours and overlaying mask ontop of original image, and ploting both original image with contour and lung mask.
-
----
-
 ## DICOM Image Analysis
 * [LUNG/CHEST IMAGES](https://github.com/jlee92603/DICOM_EDA/blob/main/chest_lung_images.ipynb)
 * [PELVIS IMAGES](https://github.com/jlee92603/DICOM_EDA/blob/main/pelvis_images.ipynb)
@@ -38,6 +30,14 @@ https://github.com/jlee92603/DICOM_EDA/assets/70551445/5e292990-62a6-488c-aee1-5
 
 ### The demonstration of the interactive 3D visual model (ankle)
 https://github.com/jlee92603/DICOM_EDA/assets/70551445/464b9441-bcee-4bc4-990b-f803844c12e9
+
+---
+## Segmentation of Lung Images
+* [LUNG SEGMENTATIONS](https://github.com/jlee92603/DICOM_EDA/blob/main/Segmentation%20of%20lungs.ipynb)
+
+&nbsp;&nbsp;&nbsp; Lung and vessel segmentations done on NIFTI format medical images by creating contours. Notable methods include finding contour of lungs and vessels, determining area of lungs and vessels, creating a mask from the contours and overlaying mask ontop of original image, and ploting both original image with contour and lung mask.
+
+---
 
 
 ---
