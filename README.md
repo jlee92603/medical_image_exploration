@@ -11,9 +11,9 @@ Exploratory data analysis of medical images using Python functions.
 
 ---
 ## DICOM Image Analysis
-* [LUNG/CHEST IMAGES](https://github.com/jlee92603/medical_image_exploration/blob/main/chest%20lung%20images.ipynb)
-* [PELVIS IMAGES](https://github.com/jlee92603/medical_image_exploration/blob/main/pelvis%20images.ipynb)
-* [ANKLE IMAGES](https://github.com/jlee92603/medical_image_exploration/blob/main/ankle%20images.ipynb)
+* [Code for LUNG/CHEST IMAGES](https://github.com/jlee92603/medical_image_exploration/blob/main/chest%20lung%20images.ipynb)
+* [Code for PELVIS IMAGES](https://github.com/jlee92603/medical_image_exploration/blob/main/pelvis%20images.ipynb)
+* [Code for ANKLE IMAGES](https://github.com/jlee92603/medical_image_exploration/blob/main/ankle%20images.ipynb)
 
 &nbsp;&nbsp;&nbsp; Several functions were performed on the DICOM format medical images to explore and model the data. Notable methods include rescaling image based on pixels to Hounsfield Units, creating a histogram based on HU, display of a sample stack of the images, resampling the images to be isovoxel, creating a 3D visual model of the slices, and making a mask around the lungs. 
 
@@ -33,13 +33,13 @@ https://github.com/jlee92603/DICOM_EDA/assets/70551445/464b9441-bcee-4bc4-990b-f
 
 ---
 ## Segmentation of Lung Images
-* [LUNG SEGMENTATIONS](https://github.com/jlee92603/medical_image_exploration/blob/main/segmentation%20of%20lungs.ipynb)
+* [Code for LUNG SEGMENTATIONS](https://github.com/jlee92603/medical_image_exploration/blob/main/segmentation%20of%20lungs.ipynb)
 
 &nbsp;&nbsp;&nbsp; Lung and vessel segmentations done on NIFTI format medical images by creating contours. Notable methods include finding contour of lungs and vessels, determining area of lungs and vessels, creating a mask from the contours and overlaying mask ontop of original image, and ploting both original image with contour and lung mask.
 
 ---
 ## Applying watershed algorithm and active contour 
-* [WATERSHED and ACTIVE CONTOUR](https://github.com/jlee92603/medical_image_exploration/blob/main/watershed%20and%20active%20contour.ipynb)
+* [Code for WATERSHED and ACTIVE CONTOUR](https://github.com/jlee92603/medical_image_exploration/blob/main/watershed%20and%20active%20contour.ipynb)
 
 &nbsp;&nbsp;&nbsp; Watershed is an image processing transformation on a grayscale image that helps with segmentation or differentiating different objects in an image. This algorithm treats the image as a topographic map, where how dark or light a point on the image is represents the height on a topographic map. 
 
