@@ -3,6 +3,8 @@
 
 &nbsp;&nbsp;&nbsp; The images are taking using a computed tomography (CT) scan. X-ray beams are released and travels through the human body to the detector on the other side. Denser parts of the body such as the bones absorb more radiation than other parts such as soft tissues and air. The rays that are absorbed do not reach the detector as well, causing denser parts of the body to show up in lighter shades of gray in the image scans. The degree of the x-ray absorption is measured in Hounsfield Units (HU). The HU for general parts of the body are rouhgly -1000HU for air, -500HU for lungs, -200HU for fat, 0HU for water, 50HU for soft tissue, and >500HU for bone. 
 
+&nbsp;&nbsp;&nbsp; This repository goes through several different image analysis, such as reading and handling medical image data sets and image segmentations using different techniques.
+
 ---
 ## DICOM Image Analysis
 * [Code for LUNG/CHEST IMAGES](https://github.com/jlee92603/medical_image_exploration/blob/main/chest%20lung%20images.ipynb)
