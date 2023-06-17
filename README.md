@@ -39,10 +39,10 @@ https://github.com/jlee92603/DICOM_EDA/assets/70551445/464b9441-bcee-4bc4-990b-f
 
 ---
 ## Applying watershed algorithm and active contour 
+* [WATERSHED and ACTIVE CONTOUR](https://github.com/jlee92603/medical_image_exploration/blob/main/watershed%20and%20active%20contour.ipynb)
+
 &nbsp;&nbsp;&nbsp; Watershed is an image processing transformation on a grayscale image that helps with segmentation or differentiating different objects in an image. This algorithm treats the image as a topographic map, where how dark or light a point on the image is represents the height on a topographic map. 
 
 &nbsp;&nbsp;&nbsp; Active contour models are used to trace out the outline of an object from an image. This model is widely used in tracking objects, recognizing shapes, segmentation, and detecting edges. 
-
-* [WATERSHED and ACTIVE CONTOUR](https://github.com/jlee92603/medical_image_exploration/blob/main/watershed%20and%20active%20contour.ipynb)
 
 ---
