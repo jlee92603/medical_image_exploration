@@ -23,10 +23,10 @@ The images are taking using a computed tomography (CT) scan. X-ray beams are rel
         - [Visual Model for Pelvis](#Visual-Model-for-Pelvis)
         - [Visual Model for Ankle](#Visual-Model-for-Ankle)
 - [Segmentation of Lung Images](#Segmentation-of-Lung-Images)
-    - [Import Necessary Packages](#Import-Necessary-Packages)
-    - [Load Images](#Load-Images)
-    - [Relevant Functions](#Relevant-Functions)
-    - [Display Images](#Display-Images)
+    - [Import Necessary Packages](#Import-Necessary-Packages-for-Segmentation)
+    - [Load Images](#Load-Lung-Images)
+    - [Relevant Functions](#Relevant-Segmentation-Functions)
+    - [Display Images](#Display-Lung-Images)
     - [Lung Segmentation](#Lung-Segmentation)
     - [Vessel Segmentation](#Vessel-Segmentation)
 - [Watershed and Active Contour](#Applying-watershed-algorithm-and-active-contour)
@@ -359,7 +359,7 @@ https://github.com/jlee92603/DICOM_EDA/assets/70551445/464b9441-bcee-4bc4-990b-f
 
 Lung and vessel segmentations done on NIFTI format medical images by creating contours. Notable methods include finding contour of lungs and vessels, determining area of lungs and vessels, creating a mask from the contours and overlaying mask ontop of original image, and ploting both original image with contour and lung mask.
 
-### Import Necesary Packages
+### Import Necesary Packages for Segmentation
 ```
 # read data
 import os
@@ -375,16 +375,16 @@ from skimage import measure
 import glob
 import csv
 ```
-### Load Images
+### Load Lung Images
 ```
 basepath = '/Users/jihye/Projects/research/Images/slice*.nii.gz'
 paths = sorted(glob.glob(basepath))
 print('Images found:', len(paths))
 ```
-### Relevant Functions
+### Relevant Segmentation Functions
 Please refer to the 'segmentation of lungs.ipynb' file for relevant functions. 
 
-### Display Images
+### Display Lung Images
 ```
 # display sample slice
 for c, exam_path in enumerate(paths):
