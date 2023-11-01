@@ -1,12 +1,35 @@
-# Introduction
-DICOM stands for digital image and communication in medicine and is the standard way of storing medical data, which consists of the original array of images, as well as meta-data, which stores information regarding pixel spacing, slice thickness, affine, acquisition time, etc. 
+---
+# Medical Image Exploration
+## Introduction
+This project project goes through several different image analysis techniques, such as reading and handling medical image data sets and image segmentation using different techniques. 
+
+DICOM stands for digital image and communication in medicine and is the standard way of storing medical data, which consists of the original array of images, as well as meta-data, which stores information regarding pixel spacing, slice thickness, affine, acquisition time, etc. DICOM images are used in this project. 
 
 The images are taking using a computed tomography (CT) scan. X-ray beams are released and travels through the human body to the detector on the other side. Denser parts of the body such as the bones absorb more radiation than other parts such as soft tissues and air. The rays that are absorbed do not reach the detector as well, causing denser parts of the body to show up in lighter shades of gray in the image scans. The degree of the x-ray absorption is measured in Hounsfield Units (HU). The HU for general parts of the body are rouhgly -1000HU for air, -500HU for lungs, -200HU for fat, 0HU for water, 50HU for soft tissue, and >500HU for bone. 
 
-This repository goes through several different image analysis, such as reading and handling medical image data sets and image segmentations using different techniques.
-
 ---
 ## Table of Contents
+- [DICOM Image Analysis](#DICOM-Image-Analysis)
+    - [Import Necessary Packages](#Import-Necessary-Packages)
+    - [Load Images](#Load-Images)
+    - [Relevant Functions](#Relevant-Functions)
+    - [HU Histogram](#HU-Histogram)
+    - [Display Images](#Display-Images)
+    - [Resample the Images](#Resample-the-Images)
+    - [Segmentation using a mask](#Segmentation-using-a-mask)
+    - [3D Visual Plotting](#3D-Visual-Plotting)
+    - [Interactive 3D Visual Model](#Interactive-3D-Visual-Model)
+        - [Visual Model for Chest](#Visual-Model-for-Chest)
+        - [Visual Model for Pelvis](#Visual-Model-for-Pelvis)
+        - [Visual Model for Ankle](#Visual-Model-for-Ankle)
+- [Segmentation of Lung Images](#Segmentation-of-Lung-Images)
+    - [Import Necessary Packages](#Import-Necessary-Packages)
+    - [Load Images](#Load-Images)
+    - [Relevant Functions](#Relevant-Functions)
+    - [Display Images](#Display-Images)
+    - [Lung Segmentation](#Lung-Segmentation)
+    - [Vessel Segmentation](#Vessel-Segmentation)
+- [Watershed and Active Contour](#Applying-watershed-algorithm-and-active-contour)
 
 ---
 ## DICOM Image Analysis
@@ -275,7 +298,7 @@ sample_stack(masked_lung, start_with=164, show_every=3)
 <img width="604" alt="Screen Shot 2023-10-31 at 11 36 04 PM" src="https://github.com/jlee92603/medical_image_exploration/assets/70551445/4660a637-6916-4c9c-8175-90b00cbace29">
 
 
-### Function for an interactive 3D visual model using plotly
+### 3D Visual Plotting
 A mesh is made. The mesh is used to create a 3D visualization of the images, with each slice stacked on top of each other to dislay a 3 dimensional visual. 
 ```
 # 3D plotting
@@ -314,17 +337,20 @@ def plt_3d(verts, faces):
 v, f = make_mesh(imgs_after_resamp, 350)
 plt_3d(v, f)
 ```
-### Function for interactive 3D visual model using plotly
+### Interactive 3D Visual Model
 In addition to the functions above, an interactive 3D visual model is created using plotly. The code is shown below, as well as the demonstration of the interactive visual model. 
 <img width="710" alt="Screen Shot 2023-06-01 at 2 25 28 PM" src="https://github.com/jlee92603/DICOM_EDA/assets/70551445/336d285a-994c-4005-a0d4-effb89ea2378">
 
-#### The demonstration of the interactive 3D visual model (lung/chest)
+#### Visual Model for Chest
+The demonstration of the interactive 3D visual model for chest
 https://github.com/jlee92603/DICOM_EDA/assets/70551445/41c0b85f-3422-4649-8213-b8e9e1f3e8c9
 
-#### The demonstration of the interactive 3D visual model (pelvis)
+#### Visual Model for Pelvis
+The demonstration of the interactive 3D visual model for pelvis
 https://github.com/jlee92603/DICOM_EDA/assets/70551445/5e292990-62a6-488c-aee1-5884a3b855ba
 
-#### The demonstration of the interactive 3D visual model (ankle)
+#### Visual Model for Ankle
+The demonstration of the interactive 3D visual model for ankle
 https://github.com/jlee92603/DICOM_EDA/assets/70551445/464b9441-bcee-4bc4-990b-f803844c12e9
 
 ---
