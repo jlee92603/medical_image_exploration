@@ -1,9 +1,9 @@
 # Introduction
-&nbsp;&nbsp;&nbsp; DICOM stands for digital image and communication in medicine and is the standard way of storing medical data, which consists of the original array of images, as well as meta-data, which stores information regarding pixel spacing, slice thickness, affine, acquisition time, etc. 
+DICOM stands for digital image and communication in medicine and is the standard way of storing medical data, which consists of the original array of images, as well as meta-data, which stores information regarding pixel spacing, slice thickness, affine, acquisition time, etc. 
 
-&nbsp;&nbsp;&nbsp; The images are taking using a computed tomography (CT) scan. X-ray beams are released and travels through the human body to the detector on the other side. Denser parts of the body such as the bones absorb more radiation than other parts such as soft tissues and air. The rays that are absorbed do not reach the detector as well, causing denser parts of the body to show up in lighter shades of gray in the image scans. The degree of the x-ray absorption is measured in Hounsfield Units (HU). The HU for general parts of the body are rouhgly -1000HU for air, -500HU for lungs, -200HU for fat, 0HU for water, 50HU for soft tissue, and >500HU for bone. 
+The images are taking using a computed tomography (CT) scan. X-ray beams are released and travels through the human body to the detector on the other side. Denser parts of the body such as the bones absorb more radiation than other parts such as soft tissues and air. The rays that are absorbed do not reach the detector as well, causing denser parts of the body to show up in lighter shades of gray in the image scans. The degree of the x-ray absorption is measured in Hounsfield Units (HU). The HU for general parts of the body are rouhgly -1000HU for air, -500HU for lungs, -200HU for fat, 0HU for water, 50HU for soft tissue, and >500HU for bone. 
 
-&nbsp;&nbsp;&nbsp; This repository goes through several different image analysis, such as reading and handling medical image data sets and image segmentations using different techniques.
+This repository goes through several different image analysis, such as reading and handling medical image data sets and image segmentations using different techniques.
 
 ---
 ## Table of Contents
@@ -14,9 +14,9 @@
 * [Code for PELVIS IMAGES](https://github.com/jlee92603/medical_image_exploration/blob/main/pelvis%20images.ipynb)
 * [Code for ANKLE IMAGES](https://github.com/jlee92603/medical_image_exploration/blob/main/ankle%20images.ipynb)
 
-&nbsp;&nbsp;&nbsp; Several functions were performed on the DICOM format medical images to explore and model the data. Notable methods include rescaling image based on pixels to Hounsfield Units, creating a histogram based on HU, display of a sample stack of the images, resampling the images to be isovoxel, creating a 3D visual model of the slices, and making a mask around the lungs. 
+Several functions were performed on the DICOM format medical images to explore and model the data. Notable methods include rescaling image based on pixels to Hounsfield Units, creating a histogram based on HU, display of a sample stack of the images, resampling the images to be isovoxel, creating a 3D visual model of the slices, and making a mask around the lungs. 
 
-&nbsp;&nbsp;&nbsp; In addition to the functions in the examples above, there is an additional function that allows 3D interactive visual model of the images. The resulting interactive model's file size was too big to include; hence, a screen recording of the interactive model is attached below. 
+In addition to the functions in the examples above, there is an additional function that allows 3D interactive visual model of the images. The resulting interactive model's file size was too big to include; hence, a screen recording of the interactive model is attached below. 
 
 The code for the lung/chest images is explained in more detail below. 
 ### Import Necessary Packages
@@ -171,14 +171,12 @@ print("Shape before resampling\t", imgs_to_process.shape)
 imgs_after_resamp, spacing = resample(imgs_to_process, patient, [1,1,1])
 print("Shape after resampling\t", imgs_after_resamp.shape)
 ```
+```
 Slice thickness: 2.500000
-
 Pixel Spacing (row, col): (0.703125, 0.703125)
-
 Shape before resampling (126, 512, 512)
-
 Shape after resampling (315, 360, 360)
-
+```
 
 The slices are 2.5mm thick and each voxel represents 0.7mm. 
 The CT is reconstructed at 512x512 voxels, which each slice representing approximately 370mm of data in length and width. 
@@ -333,14 +331,175 @@ https://github.com/jlee92603/DICOM_EDA/assets/70551445/464b9441-bcee-4bc4-990b-f
 ## Segmentation of Lung Images
 * [Code for LUNG SEGMENTATIONS](https://github.com/jlee92603/medical_image_exploration/blob/main/segmentation%20of%20lungs.ipynb)
 
-&nbsp;&nbsp;&nbsp; Lung and vessel segmentations done on NIFTI format medical images by creating contours. Notable methods include finding contour of lungs and vessels, determining area of lungs and vessels, creating a mask from the contours and overlaying mask ontop of original image, and ploting both original image with contour and lung mask.
+Lung and vessel segmentations done on NIFTI format medical images by creating contours. Notable methods include finding contour of lungs and vessels, determining area of lungs and vessels, creating a mask from the contours and overlaying mask ontop of original image, and ploting both original image with contour and lung mask.
+
+### Import Necesary Packages
+```
+# read data
+import os
+import shutil
+
+import matplotlib.pyplot as plt
+import nibabel as nib
+import numpy as np
+from PIL import Image, ImageDraw
+from scipy.spatial import ConvexHull
+from skimage import measure
+
+import glob
+import csv
+```
+### Load Images
+```
+basepath = '/Users/jihye/Projects/research/Images/slice*.nii.gz'
+paths = sorted(glob.glob(basepath))
+print('Images found:', len(paths))
+```
+### Relevant Functions
+Please refer to the 'segmentation of lungs.ipynb' file for relevant functions. 
+
+### Display Images
+```
+# display sample slice
+for c, exam_path in enumerate(paths):
+    ct_img = nib.load(exam_path)
+    ct_numpy = ct_img.get_fdata() # get array data
+    
+    if c == 1:
+        # show the first slice
+        fig,ax = plt.subplots(1,3)
+        ax[0].set_title('original')
+        ax[0].imshow(ct_numpy.T, cmap="gray", origin="lower")
+        ax[0].axis('off')
+        
+        # show the first slice with emphasis on tissues (HU level 50, window 250)
+        ax[1].set_title('+50,250')
+        ax[1].imshow(ct_numpy.clip(-75,175).T, cmap="gray", origin="lower")
+        ax[1].axis('off')
+        
+        # show the first slice with emphasis on lungs (HU level -600, window 1500)
+        ax[2].set_title('-600,1500')
+        ax[2].imshow(ct_numpy.clip(-1350,175).T, cmap="gray", origin="lower")
+        ax[2].axis('off')
+        plt.show()
+        break
+```
+<img width="342" alt="Screen Shot 2023-10-31 at 11 43 06 PM" src="https://github.com/jlee92603/medical_image_exploration/assets/70551445/29634fe8-90e7-4cf8-b70b-decfbc634727">
+
+### Lung Segmentation
+```
+# lung segmentation based on image intensity and medical image processing
+outpath = './LUNGS/'
+contour_path = './Contours/'
+paths = sorted(glob.glob(basepath))
+myFile = open('lung_volumes.csv', 'w')
+lung_areas = []
+make_dirs(outpath)
+make_dirs(contour_path)
+i = 0
+
+fig,ax = plt.subplots(7,6,figsize=[12,12])
+
+for c, exam_path in enumerate(paths):
+    img_name = exam_path.split("/")[-1].split('.nii')[0]
+    out_mask_name = outpath + img_name + "_mask"
+    contour_name = contour_path + img_name + "_contour"
+
+    # 1. find pixel dimensions to calculate the area in mm^2
+    ct_img = nib.load(exam_path)
+    pixdim = find_pix_dim(ct_img)
+    ct_numpy = ct_img.get_fdata()
+
+    # 2. binarize image using intensity thresholding 
+    min_HU = -1000
+    max_HU = -300
+    
+    # 3. contour finding (contour is set of points that describe line or area)
+    contours = intensity_seg(ct_numpy, min_HU, max_HU) # expected HU range
+
+    # 4. find lungs of set of possible contours and plot
+    lungs = find_lungs(contours)
+    ax[int(i/6),int(i%6)].imshow(ct_numpy.T, cmap=plt.cm.gray)
+    ax[int(i/6),int(i%6)].axis('off')
+    
+    # show contours and plot
+    for contour in lungs:
+        ax[int(i/6),int(i%6)].plot(contour[:,0], contour[:,1], linewidth=1)
+    i+=1
+    
+    # 5. contour to binary mask
+    lung_mask = create_mask_from_polygon(ct_numpy, lungs)
+    save_nifty(lung_mask, out_mask_name, ct_img.affine)
+    
+    # plot
+    ax[int(i/6),int(i%6)].imshow(lung_mask.T, cmap="gray", origin="lower")
+    ax[int(i/6),int(i%6)].axis('off')
+    i+=1
+
+    # compute lung area
+    lung_area = compute_area(lung_mask, find_pix_dim(ct_img))
+    lung_areas.append([img_name,lung_area]) # int is ok since the units are already mm^2
+    print(img_name,'lung area in mm^2:', lung_area)
+
+plt.show()
+```
+<img width="583" alt="Screen Shot 2023-10-31 at 11 45 22 PM" src="https://github.com/jlee92603/medical_image_exploration/assets/70551445/d0fa3f96-cc4a-4d3e-9c7b-736f5eaa0343">
+
+### Vessel Segmentation
+```
+fig,ax = plt.subplots(7,6,figsize=[12,12])
+i=0
+    
+for c, exam_path in enumerate(paths):
+    img_name = exam_path.split("/")[-1].split('.nii')[0]
+    vessel_name = vessels + img_name + "_vessel_only_mask"
+    overlay_name = overlay_path + img_name + "_vessels"
+
+    # 1. find pixel dimensions to calculate the area in mm^2
+    ct_img = nib.load(exam_path)
+    pixdim = find_pix_dim(ct_img)
+    ct_numpy = ct_img.get_fdata()
+    
+    # 2. contour finding
+    contours = intensity_seg(ct_numpy, -1000, -300)
+
+    # 4. find lungs from set of possible contours and create a mask
+    lungs_contour = find_lungs(contours)
+    lung_mask = create_mask_from_polygon(ct_numpy, lungs_contour)
+
+    # 5. compute lung area
+    lung_area = compute_area(lung_mask, find_pix_dim(ct_img))
+
+    # 6. create a mask of vessels
+    vessels_only = create_vessel_mask(lung_mask, ct_numpy, denoise=False)
+    ax[int(i/6),int(i%6)].imshow(vessels_only.T, 'gray', origin="lower")
+    ax[int(i/6),int(i%6)].axis('off')
+    i+=1
+    
+    # 7. plot image with vessel mask
+    ax[int(i/6),int(i%6)].imshow(ct_numpy.T, 'gray', interpolation='none')
+    ax[int(i/6),int(i%6)].imshow(np.flipud(vessels_only.T), 'jet', interpolation='none', alpha=0.5)
+    ax[int(i/6),int(i%6)].axis('off')
+    i+=1
+        
+    # 7. compute vessel area as well as ratio of vessel area to lung area
+    vessel_area = compute_area(vessels_only, find_pix_dim(ct_img))
+    ratio = (vessel_area / lung_area) * 100
+    print(img_name, 'Vessel %:', ratio)
+    lung_areas_csv.append([img_name, lung_area, vessel_area, ratio])
+    ratios.append(ratio)
+    
+plt.show()
+```
+<img width="581" alt="Screen Shot 2023-10-31 at 11 45 36 PM" src="https://github.com/jlee92603/medical_image_exploration/assets/70551445/d878ca63-b9ba-4b4d-b4c3-03c7f71b6073">
 
 ---
 ## Applying watershed algorithm and active contour 
+Watershed and active contour techniques are explored on several images. 
 * [Code for WATERSHED and ACTIVE CONTOUR](https://github.com/jlee92603/medical_image_exploration/blob/main/watershed%20and%20active%20contour.ipynb)
 
-&nbsp;&nbsp;&nbsp; Watershed is an image processing transformation on a grayscale image that helps with segmentation or differentiating different objects in an image. This algorithm treats the image as a topographic map, where how dark or light a point on the image is represents the height on a topographic map. 
+Watershed is an image processing transformation on a grayscale image that helps with segmentation or differentiating different objects in an image. This algorithm treats the image as a topographic map, where how dark or light a point on the image is represents the height on a topographic map. 
 
-&nbsp;&nbsp;&nbsp; Active contour models are used to trace out the outline of an object from an image. This model is widely used in tracking objects, recognizing shapes, segmentation, and detecting edges. 
+Active contour models are used to trace out the outline of an object from an image. This model is widely used in tracking objects, recognizing shapes, segmentation, and detecting edges. 
 
 ---
