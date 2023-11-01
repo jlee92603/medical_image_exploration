@@ -343,14 +343,17 @@ In addition to the functions above, an interactive 3D visual model is created us
 
 #### Visual Model for Chest
 The demonstration of the interactive 3D visual model for chest
+
 https://github.com/jlee92603/DICOM_EDA/assets/70551445/41c0b85f-3422-4649-8213-b8e9e1f3e8c9
 
 #### Visual Model for Pelvis
 The demonstration of the interactive 3D visual model for pelvis
+
 https://github.com/jlee92603/DICOM_EDA/assets/70551445/5e292990-62a6-488c-aee1-5884a3b855ba
 
 #### Visual Model for Ankle
 The demonstration of the interactive 3D visual model for ankle
+
 https://github.com/jlee92603/DICOM_EDA/assets/70551445/464b9441-bcee-4bc4-990b-f803844c12e9
 
 ---
