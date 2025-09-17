@@ -1,7 +1,7 @@
 ---
 # Medical Image Exploration
 ## Introduction
-This project project goes through several different image analysis techniques, such as reading and handling medical image data sets and image segmentation using different techniques. 
+This project goes through several different image analysis techniques, such as reading and handling medical image data sets and image segmentation using different techniques. 
 
 DICOM stands for digital image and communication in medicine and is the standard way of storing medical data, which consists of the original array of images, as well as meta-data, which stores information regarding pixel spacing, slice thickness, affine, acquisition time, etc. DICOM images are used in this project. 
 
